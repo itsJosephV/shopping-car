@@ -3,8 +3,8 @@ import { Link, Route } from "react-router-dom";
 
 const links = [
   {
-    path: "/",
-    label: "home",
+    path: "/items",
+    label: "Shop",
   },
   {
     path: "/contact",

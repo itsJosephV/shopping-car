@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import useFetch from "../useFetch";
 import Card from "../components/Card";
+import Loading from "../components/Loading";
 
-const Home = () => {
+const Items = () => {
   const { data, loading, error } = useFetch(
     "https://fakestoreapi.com/products"
   );
@@ -16,6 +17,8 @@ const Home = () => {
       })
     : data;
   const itemsPerColumn = Math.ceil(matches?.length / 3);
+
+  // console.log(data)
 
   return (
     <div
@@ -50,7 +53,7 @@ const Home = () => {
       </div>
       <article className="flex flex-col-3 gap-4 mx-auto">
         {error && <div>Error: {error}</div>}
-        {loading && <div>Loading...</div>}
+        {loading && <Loading />}
         {[0, 1, 2].map((sectionIndex) => (
           <div className="flex flex-col gap-4" key={sectionIndex}>
             {matches
@@ -76,6 +79,7 @@ const Home = () => {
                       category={category}
                       image={image}
                       rating={rating}
+                      id={id}
                     />
                   </div>
                 )
@@ -87,4 +91,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Items;
