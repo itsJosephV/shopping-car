@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Route } from "react-router-dom";
 
 const links = [
@@ -13,6 +13,7 @@ const links = [
 ];
 
 const NavBar = () => {
+
   return (
     <nav
       className="p-4 flex justify-between"

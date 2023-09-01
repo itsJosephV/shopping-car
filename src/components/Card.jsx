@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({id, title, price, category, image, rating }) => {
+const Card = ({id, title, price, category, image, rating, onAddProducto }) => {
   return (
     
 <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow bg-white dark:border-gray-700">
@@ -20,7 +20,7 @@ const Card = ({id, title, price, category, image, rating }) => {
         </div>
         <div className="flex items-center justify-between">
             <span className="text-2xl font-bold text-gray-900">{price}€</span>
-            <a href="#" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+            <button onClick={() => onAddProducto(id)} href="#" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
         </div>
     </div>
 </div>

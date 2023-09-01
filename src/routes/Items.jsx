@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import useFetch from "../useFetch";
 import Card from "../components/Card";
 import Loading from "../components/Loading";
+import { CartContext } from "../context/CartContext";
 
 const Items = () => {
+
+ 
+  
   const { data, loading, error } = useFetch(
     "https://fakestoreapi.com/products"
   );
@@ -18,7 +22,15 @@ const Items = () => {
     : data;
   const itemsPerColumn = Math.ceil(matches?.length / 3);
 
-  // console.log(data)
+  const {allProducts, setAllProducts} = useContext(CartContext)
+
+
+  const onAddItem = (item) => {
+    setAllProducts([...allProducts, item])
+  } 
+
+  console.log(allProducts)
+
 
   return (
     <div
@@ -62,24 +74,17 @@ const Items = () => {
                 (sectionIndex + 1) * itemsPerColumn
               )
               .map(
-                ({
-                  id,
-                  title,
-                  price,
-                  description,
-                  category,
-                  image,
-                  rating,
-                }) => (
-                  <div key={id}>
+                (item) => (
+                  <div key={item.id}>
                     <Card
-                      title={title}
-                      price={price}
-                      description={description}
-                      category={category}
-                      image={image}
-                      rating={rating}
-                      id={id}
+                      title={item.title}
+                      price={item.price}
+                      description={item.description}
+                      category={item.category}
+                      image={item.image}
+                      rating={item.rating}
+                      id={item.id}
+                      onAddProducto={() => onAddItem(item)}
                     />
                   </div>
                 )
