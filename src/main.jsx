@@ -7,6 +7,7 @@ import Contact from "./routes/contact";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./routes/ErrorPage";
 import ItemDetails from "./routes/ItemDetails";
+import Cart from "./routes/Cart";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/items/:id",
         element: <ItemDetails />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       },
       {
         path: "/contact",

@@ -7,6 +7,10 @@ const links = [
     label: "Shop",
   },
   {
+    path: "/cart",
+    label: "Cart",
+  },
+  {
     path: "/contact",
     label: "contact",
   },
