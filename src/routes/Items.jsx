@@ -19,7 +19,7 @@ const Items = () => {
     : data;
   const itemsPerColumn = Math.ceil(matches?.length / 3);
 
-  const { addItem } = useContext(CartContext);
+  const { addItem, toast } = useContext(CartContext);
 
   return (
     <div
@@ -31,7 +31,7 @@ const Items = () => {
       </div>
       <div>
         <label
-          for="countries"
+          htmlFor="countries"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
           Select an option
@@ -72,7 +72,7 @@ const Items = () => {
                     image={item.image}
                     rating={item.rating}
                     id={item.id}
-                    onAddProducto={() => addItem(item)}
+                    addItem={() => addItem(item)}
                   />
                 </div>
               ))}

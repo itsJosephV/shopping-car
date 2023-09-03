@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import { Link, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const links = [
   {
     path: "/items",
     label: "Shop",
-  },
-  {
-    path: "/cart",
-    label: "Cart",
   },
   {
     path: "/contact",
@@ -17,6 +14,8 @@ const links = [
 ];
 
 const NavBar = () => {
+
+  const { allProducts } = useContext(CartContext)
 
   return (
     <nav
@@ -33,6 +32,13 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
+      <div>
+        <Link to="/cart">
+        <div>
+          <p>Cart {allProducts.length}</p>
+        </div>
+        </Link>
+      </div>
     </nav>
   );
 };

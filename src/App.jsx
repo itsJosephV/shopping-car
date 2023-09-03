@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import CartContextProvider from "./context/CartContext";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Outlet />
         </section>
         <Footer />
+        <Toaster />
         </CartContextProvider>
       </main>
     </div>

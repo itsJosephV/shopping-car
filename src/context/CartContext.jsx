@@ -1,9 +1,17 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 export const CartContext = createContext(null);
 const CartContextProvider = ({ children }) => {
-  const [allProducts, setAllProducts] = useState([]);
+
+  const cartLocalStorage = JSON.parse(localStorage.getItem('cart')) ?? []
+
+  const [allProducts, setAllProducts] = useState(cartLocalStorage);
   const [total, setTotal] = useState(0);
   const [countProducts, setcountProducts] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(allProducts))
+  }, [allProducts])
+
 
   const addItem = (item) => {
     if (allProducts.some((itemState) => itemState.id === item.id)) {
@@ -20,6 +28,7 @@ const CartContextProvider = ({ children }) => {
       console.log('Added existing item in cart + 1')
     } else {
       setAllProducts([...allProducts, { ...item, quantity: 1 }]);
+      localStorage.setItem('cart', JSON.stringify(allProducts))
       console.log('Added item first time')
     }
   };
@@ -27,6 +36,7 @@ const CartContextProvider = ({ children }) => {
   const deleteItem = (itemId) => {
     const allProductsUpdated = allProducts.filter((item) => item.id != itemId)
     setAllProducts(allProductsUpdated)
+    localStorage.setItem("cart", JSON.stringify(allProducts));
     console.log('item deleted')
   }
 
@@ -38,6 +48,7 @@ const CartContextProvider = ({ children }) => {
       return itemState
     })
     setAllProducts(allProductsUpdated)
+    localStorage.setItem("cart", JSON.stringify(allProducts));
   }
 
 
