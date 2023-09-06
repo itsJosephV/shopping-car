@@ -19,7 +19,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className="p-4 flex justify-between"
+      className="p-4 flex justify-between border-[1px] border-red-300"
       style={{ backgroundColor: "gray", opacity: "50%" }}
     >
       <div>

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
 
 const Card = ({ id, title, price, category, image, rating, addItem }) => {
+  const { toast } = useContext(CartContext);
+
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow bg-white dark:border-gray-700">
+    <div className="w-full border-gray-200 rounded-lg shadow bg-white dark:border-gray-700">
       <Link to={`/items/${id}`}>
         <img className="p-8 rounded-t-lg" src={image} alt="product image" />
       </Link>

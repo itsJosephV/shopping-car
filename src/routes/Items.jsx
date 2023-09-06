@@ -3,7 +3,8 @@ import useFetch from "../useFetch";
 import Card from "../components/Card";
 import Loading from "../components/Loading";
 import { CartContext } from "../context/CartContext";
-
+import Masonry from "react-masonry-css";
+ 
 const Items = () => {
   const { data, loading, error } = useFetch(
     "https://fakestoreapi.com/products"
@@ -17,9 +18,19 @@ const Items = () => {
         return true;
       })
     : data;
-  const itemsPerColumn = Math.ceil(matches?.length / 3);
 
-  const { addItem, toast } = useContext(CartContext);
+  // console.log(itemsPerColumn)
+
+  const { addItem } = useContext(CartContext);
+
+  const numColumns = Math.min(Math.ceil(matches?.length / 3), 3);
+
+  const breakpointColumnsObj = {
+    default: numColumns,
+    1100: numColumns,
+    700: numColumns > 1 ? numColumns - 1 : 1,
+    500: 1,
+  };
 
   return (
     <div
@@ -27,7 +38,7 @@ const Items = () => {
       // style={{ backgroundColor: "red", opacity: "50%" }}
     >
       <div>
-        <h1>Shopping car</h1>
+        <h1>Shopping</h1>
       </div>
       <div>
         <label
@@ -48,14 +59,12 @@ const Items = () => {
               {catg}
             </option>
           ))}
-
-          {/* <option value="jewelery">Jewelery</option> */}
         </select>
       </div>
-      <article className="flex flex-col-3 gap-4 mx-auto">
+      <article className="flex justify-center">
         {error && <div>Error: {error}</div>}
         {loading && <Loading />}
-        {[0, 1, 2].map((sectionIndex) => (
+        {/* {[0, 1, 2].map((sectionIndex) => (
           <div className="flex flex-col gap-4" key={sectionIndex}>
             {matches
               ?.slice(
@@ -77,7 +86,27 @@ const Items = () => {
                 </div>
               ))}
           </div>
-        ))}
+        ))} */}
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {matches?.map((item) => (
+            <div key={item.id}>
+              <Card
+                title={item.title}
+                price={item.price}
+                description={item.description}
+                category={item.category}
+                image={item.image}
+                rating={item.rating}
+                id={item.id}
+                addItem={() => addItem(item)}
+              />
+            </div>
+          ))}
+        </Masonry>
       </article>
     </div>
   );

@@ -9,7 +9,7 @@ import { Toaster } from "sonner";
 function App() {
   return (
     <div className="App">
-      <main className="px-4 max-w-screen-lg m-auto grid min-h-screen grid-rows-[60px,1fr,60px] gap-4">
+      <main className="px-4 max-w-screen-lg m-auto grid min-h-screen grid-rows-[60px,1fr,60px] gap-4 relative">
         <CartContextProvider>
         <NavBar />
         <section>

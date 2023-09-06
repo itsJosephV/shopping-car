@@ -1,4 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
+import { toast } from "sonner";
+
 export const CartContext = createContext(null);
 const CartContextProvider = ({ children }) => {
 
@@ -65,6 +67,7 @@ const CartContextProvider = ({ children }) => {
         setTotal,
         countProducts,
         setcountProducts,
+        toast,
       }}
     >
       {children}
